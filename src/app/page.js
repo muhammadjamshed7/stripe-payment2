@@ -17,7 +17,8 @@ const Page = () => {
         <Image src="/vercel.svg" alt="vercel" width={300} height={200} />
       </div>
       <button className={style.button} onClick={handleCheckout}>
-        Buy Vercel Company
+        Buy Vercel Company 
+        logo
       </button>
     </main>
   );

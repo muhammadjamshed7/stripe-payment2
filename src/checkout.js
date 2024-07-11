@@ -1,21 +1,25 @@
-import { loadStripe } from "@stripe/stripe-js";
+import { loadStripe } from '@stripe/stripe-js';
 
-let stripePromise = null;
+let stripePromise;
 
 const getStripe = () => {
   if (!stripePromise) {
-    // console.log("Stripe Key: ", process.env.NEXT_PUBLIC_KEY_KEY); // Log the Stripe key
-    stripePromise = loadStripe(process.env.NEXT_PUBLIC_KEY_KEY);
+    stripePromise = loadStripe('pk_test_51PauITG65rFYH6qRpwYsHz6tCblk7x9pOsyjy9ICLGvxI3wIu45TdJAvQ5hyItrfGllUsM8MW4UCkcTzlQsRxAZ300Hern32Fx'); // Replace with your actual publishable key
   }
   return stripePromise;
 };
 
-export async function checkout({ lineItems }) {
+export const checkout = async ({ lineItems }) => {
   const stripe = await getStripe();
-  await stripe.redirectToCheckout({
-    mode: 'payment',
+
+  const { error } = await stripe.redirectToCheckout({
+    mode: 'subscription', // Set the mode to 'subscription'
     lineItems,
-    successUrl: `${window.location.origin}?session_id={CHECKOUT_SESSION_ID}`,
-    cancelUrl: window.location.origin,
+    successUrl: `${window.location.origin}/success`,
+    cancelUrl: `${window.location.origin}/canceled`,
   });
-}
+
+  if (error) {
+    console.error('Stripe Checkout error:', error);
+  }
+};
