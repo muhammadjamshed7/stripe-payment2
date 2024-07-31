@@ -7,7 +7,7 @@ import { checkout } from '@/checkout';
 const Page = () => {
   const handleCheckout = () => {
     checkout({
-      lineItems: [{ price: "price_1PbGyfG65rFYH6qRzmAwa6qa", quantity: 1 }]
+      lineItems: [{ price: "price_1PbN4LG65rFYH6qRDOSzIGKl", quantity: 1 }]
     });
   };
 
