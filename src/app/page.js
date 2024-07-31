@@ -18,7 +18,7 @@ const Page = () => {
       </div>
       <button className={style.button} onClick={handleCheckout}>
         Buy Vercel Company 
-        logo
+       Logo From Jamshed
       </button>
     </main>
   );
